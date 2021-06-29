@@ -1,4 +1,7 @@
+import 'package:bmi_calculator/widgets/icon_content.dart';
+import 'package:bmi_calculator/widgets/reusable_card.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const cardColor = Color(0xFF1D1E33);
 
@@ -20,25 +23,37 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(cardColor),
+                  child: ReusableCard(
+                    color: cardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(cardColor),
+                  child: ReusableCard(
+                    color: cardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
+                    ),
+                  ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ReusableCard(cardColor),
+            child: ReusableCard(color: cardColor),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(cardColor),
+                  child: ReusableCard(color: cardColor),
                 ),
                 Expanded(
-                  child: ReusableCard(cardColor),
+                  child: ReusableCard(color: cardColor),
                 ),
               ],
             ),
@@ -51,25 +66,6 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard(this.color);
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      height: double.infinity,
-      width: double.infinity,
     );
   }
 }
