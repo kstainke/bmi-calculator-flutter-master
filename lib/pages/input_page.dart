@@ -3,7 +3,9 @@ import 'package:bmi_calculator/widgets/reusable_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const cardColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -11,6 +13,15 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+
+  void updateColor(Gender gender) {
+    maleCardColor = gender == Gender.male ? activeCardColor : inactiveCardColor;
+    femaleCardColor =
+        gender == Gender.female ? activeCardColor : inactiveCardColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,36 +35,46 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: cardColor,
+                    color: maleCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
                     ),
+                    onTap: () {
+                      setState(() {
+                        updateColor(Gender.male);
+                      });
+                    },
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: cardColor,
+                    color: femaleCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
                     ),
+                    onTap: () {
+                      setState(() {
+                        updateColor(Gender.female);
+                      });
+                    },
                   ),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: ReusableCard(color: cardColor),
+            child: ReusableCard(color: activeCardColor),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(color: cardColor),
+                  child: ReusableCard(color: activeCardColor),
                 ),
                 Expanded(
-                  child: ReusableCard(color: cardColor),
+                  child: ReusableCard(color: activeCardColor),
                 ),
               ],
             ),
