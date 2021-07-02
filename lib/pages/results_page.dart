@@ -1,9 +1,14 @@
+import 'package:bmi_calculator/calculator_brain.dart';
 import 'package:bmi_calculator/constants/constants.dart';
 import 'package:bmi_calculator/widgets/bottom_button.dart';
 import 'package:bmi_calculator/widgets/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({@required this.calc});
+
+  final CalculatorBrain calc;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,15 +29,15 @@ class ResultsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Overweight',
+                      calc.getResult(),
                       style: kResultTextStyle,
                     ),
                     Text(
-                      '26.7',
+                      calc.getBMI(),
                       style: kBMITextStyle,
                     ),
                     Text(
-                      'You have a blah blah blah',
+                      calc.getInterpretation(),
                       style: kBodyText,
                       textAlign: TextAlign.center,
                     ),
